@@ -40,7 +40,7 @@ Iniciado por: Jenkins
             steps {
                 echo 'Ejecutando pruebas unitarias...'
                 script {
-                    bat 'python test_app.py'
+                    bat 'python test_app_error.py'
                 }
                 echo 'Tests completados exitosamente'
             }
