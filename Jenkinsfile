@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        PROJECT_NAME = 'Sistema de Gestión de Tareas'
+        PROJECT_NAME = 'Sistema de Gestion de Tareas'
     }
     
     stages {
@@ -13,13 +13,11 @@ pipeline {
                         channel: '#notificaciones-dev',
                         color: '#439FE0',
                         message: """
-🚀 *Pipeline Iniciado*
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 Proyecto: ${PROJECT_NAME}
-🔢 Build: #${BUILD_NUMBER}
-📅 Fecha: ${new Date().format('yyyy-MM-dd HH:mm:ss')}
-👤 Iniciado por: Jenkins
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*Pipeline Iniciado*
+Proyecto: ${PROJECT_NAME}
+Build: #${BUILD_NUMBER}
+Fecha: ${new Date().format('yyyy-MM-dd HH:mm:ss')}
+Iniciado por: Jenkins
                         """.stripIndent()
                     )
                 }
@@ -50,7 +48,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                echo 'Desplegando aplicación...'
+                echo 'Desplegando aplicacion...'
                 script {
                     sleep 2
                 }
@@ -66,15 +64,13 @@ pipeline {
                     channel: '#notificaciones-dev',
                     color: 'good',
                     message: """
-✅ *Build Exitoso*
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 Proyecto: ${PROJECT_NAME}
-🔢 Build: #${BUILD_NUMBER}
-⏱️ Duración: ${currentBuild.durationString.replace(' and counting', '')}
-📅 Fecha: ${new Date().format('yyyy-MM-dd HH:mm:ss')}
-🎯 Estado: SUCCESS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔗 Ver detalles: ${BUILD_URL}
+*Build Exitoso*
+Proyecto: ${PROJECT_NAME}
+Build: #${BUILD_NUMBER}
+Duracion: ${currentBuild.durationString.replace(' and counting', '')}
+Fecha: ${new Date().format('yyyy-MM-dd HH:mm:ss')}
+Estado: SUCCESS
+Ver detalles: ${BUILD_URL}
                     """.stripIndent()
                 )
             }
@@ -87,20 +83,18 @@ pipeline {
                     channel: '#notificaciones-dev',
                     color: 'danger',
                     message: """
-❌ *Build Fallido*
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 Proyecto: ${PROJECT_NAME}
-🔢 Build: #${BUILD_NUMBER}
-⏱️ Duración: ${currentBuild.durationString.replace(' and counting', '')}
-📅 Fecha: ${new Date().format('yyyy-MM-dd HH:mm:ss')}
-🎯 Estado: FAILURE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔗 Ver logs: ${BUILD_URL}console
-👥 @channel Por favor revisar
+*Build Fallido*
+Proyecto: ${PROJECT_NAME}
+Build: #${BUILD_NUMBER}
+Duracion: ${currentBuild.durationString.replace(' and counting', '')}
+Fecha: ${new Date().format('yyyy-MM-dd HH:mm:ss')}
+Estado: FAILURE
+Ver logs: ${BUILD_URL}console
+@channel Por favor revisar
                     """.stripIndent()
                 )
             }
-            echo 'Pipeline falló'
+            echo 'Pipeline fallo'
         }
     }
 }
